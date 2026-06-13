@@ -1,9 +1,23 @@
-export default function TestTailwind() {
+import React from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Layout from "./components/Layout";
+import NotFound404 from "./components/NotFound404";
+
+
+
+export default function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-green-500">
-      <h1 className="text-4xl font-bold text-white">
-        Tailwind fonctionne ✅
-      </h1>
-    </div>
+    <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />} >
+            {/* ovaina ny route nareo ny eto */}
+            <Route path='/' element={<p>Home</p>} />  
+            {/* <Route path="/à-propos" element={<p>About</p>} /> */}
+            {/* <Route path="/services" element={<p>Services</p>} /> */}
+            {/* <Route path="/contact" element={<p>Contact</p>} /> */}
+          </Route>
+          <Route path="*" element={<NotFound404 />} />
+        </Routes>
+    </BrowserRouter>
   );
 }
