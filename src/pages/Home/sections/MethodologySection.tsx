@@ -46,7 +46,6 @@ export default function MethodologySection() {
         <section className="py-20 bg-bg text-text-dark">
             <div className="mx-auto max-w-7xl px-4">
 
-                {/* HEADER DIRECT (sans composant) */}
                 <div className="text-center max-w-2xl mx-auto">
                     <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary border border-primary/20">
                         <span className="h-1.5 w-1.5 rounded-full bg-primary" />
@@ -62,7 +61,6 @@ export default function MethodologySection() {
                     </p>
                 </div>
 
-                {/* GRID */}
                 <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {steps.map((step, i) => {
                         const Icon = step.icon;
