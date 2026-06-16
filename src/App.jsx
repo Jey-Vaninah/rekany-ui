@@ -1,9 +1,10 @@
-export default function TestTailwind() {
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home/Home";
+
+export default function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-green-500">
-      <h1 className="text-4xl font-bold text-white">
-        Tailwind fonctionne ✅
-      </h1>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
   );
 }
