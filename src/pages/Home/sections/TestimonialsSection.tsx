@@ -23,7 +23,6 @@ export default function TestimonialsSection() {
         <section className="py-20 md:py-28 bg-surface-light text-text-dark ">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-                {/* HEADER */}
                 <div className="mx-auto max-w-2xl text-center">
                     <span className="inline-flex items-center gap-2 rounded-full bg-surface px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary border border-border">
                         <span className="h-1.5 w-1.5 rounded-full bg-primary" />
@@ -35,7 +34,6 @@ export default function TestimonialsSection() {
                     </h2>
                 </div>
 
-                {/* CARD */}
                 <div className="relative mx-auto mt-12 max-w-3xl">
 
                     <AnimatePresence mode="wait">
@@ -53,7 +51,6 @@ export default function TestimonialsSection() {
                                 « {testimonial.quote} »
                             </blockquote>
 
-                            {/* USER */}
                             <div className="mt-8 flex items-center gap-4">
 
                                 <div className="grid h-14 w-14 place-items-center rounded-full bg-primary text-white text-lg font-bold">
@@ -76,7 +73,6 @@ export default function TestimonialsSection() {
                         </motion.div>
                     </AnimatePresence>
 
-                    {/* NAVIGATION */}
                     <div className="mt-8 flex items-center justify-center gap-3">
 
                         <button

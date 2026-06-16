@@ -17,7 +17,6 @@ export default function Hero() {
       className="relative overflow-hidden bg-cover bg-center pt-32 pb-20 md:pt-40 md:pb-28"
       style={{ backgroundImage: `url(${bg})` }}
     >
-      {/* OVERLAY */}
       <div className="absolute inset-0 bg-black/60" />
 
       <div className="relative z-10 px-6 sm:px-10 lg:px-16 xl:px-24">
@@ -25,10 +24,8 @@ export default function Hero() {
 
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
 
-            {/* LEFT */}
             <div className="space-y-8 text-white lg:col-span-7">
 
-              {/* BADGE */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -39,7 +36,6 @@ export default function Hero() {
                 Madagascar • Export de Pierres Précieuses
               </motion.div>
 
-              {/* TITLE */}
               <motion.h1
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -55,7 +51,6 @@ export default function Hero() {
                 de Madagascar
               </motion.h1>
 
-              {/* DESCRIPTION */}
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -66,7 +61,6 @@ export default function Hero() {
                 de pierres précieuses et semi-précieuses de Madagascar.
               </motion.p>
 
-              {/* CTA */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -86,7 +80,6 @@ export default function Hero() {
                 </button>
               </motion.div>
 
-              {/* STATS (LEFT + SMOOTH ANIMATION) */}
               <div className="grid grid-cols-3 gap-10 border-t border-white/10 pt-6 text-left">
 
                 {stats.map((item, i) => (
@@ -113,7 +106,6 @@ export default function Hero() {
 
               </div>
 
-              {/* RATING */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -133,7 +125,6 @@ export default function Hero() {
 
             </div>
 
-            {/* RIGHT */}
             <div className="hidden lg:flex lg:col-span-5 justify-end">
 
               <motion.div
