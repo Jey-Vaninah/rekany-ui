@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
 import diamant from "@/assets/images/diamant.jpg";
-import blueCrystal from "@/assets/images//blue.jpg";
+import blueCrystal from "@/assets/images/blue.jpg";
 import violet from "@/assets/images/violet2.jpg";
 
 import Button from "../../../components/ui/Button";
