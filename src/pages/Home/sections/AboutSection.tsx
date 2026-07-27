@@ -6,6 +6,7 @@ import karoty from "@/assets/images/karoty.jpg";
 import poivron from "@/assets/images/poivron.jpg";
 
 import Button from "../../../components/ui/Button";
+import { Link } from "react-router-dom";
 
 export default function AboutSection() {
   return (
@@ -93,9 +94,11 @@ export default function AboutSection() {
               </div>
 
               <div className="pt-4">
-                <Button variant="primary">
-                  Découvrir nos produits
-                </Button>
+                <Link to="/produits">
+                  <Button variant="primary" icon>
+                    Découvrir nos produits
+                  </Button>
+                </Link>
               </div>
 
             </motion.div>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Search, Star, Globe, ArrowRight} from "lucide-react";
+import { Search, Star, Globe, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import bg from "@/assets/images/test2.jpg";
@@ -15,14 +15,14 @@ const stats = [
 export default function Hero() {
   return (
     <section
-  className="relative overflow-hidden bg-cover bg-center min-h-screen flex items-center pt-20"
-  style={{
-    backgroundImage: `url(${bg})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-  }}
->
+      className="relative overflow-hidden bg-cover bg-center min-h-screen flex items-center pt-20"
+      style={{
+        backgroundImage: `url(${bg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       {/* Overlay avec dégradé flou en bas */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/50 to-black/70" />
 
@@ -76,9 +76,12 @@ export default function Hero() {
                 transition={{ duration: 1, delay: 0.4 }}
                 className="flex flex-wrap items-center gap-4"
               >
-                <Button variant="primary" icon>
-                  Découvrir nos produits
-                </Button>
+
+                <Link to="/produits">
+                  <Button variant="primary" icon>
+                    Découvrir nos produits
+                  </Button>
+                </Link>
 
                 <Link to="/contact">
                   <Button variant="secondary">
