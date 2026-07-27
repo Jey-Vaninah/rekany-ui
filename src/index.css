@@ -1,38 +1,103 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #F9FAFB;
+  --bg: #F8F5E9;
   --surface: #FFFFFF;
-
-  --text: #1F2937;
+  --text: #37474F;
   --muted: #6B7280;
-
-  --primary-700: #047857;
-  --primary-500: #10B981;
-  --primary-100: #D1FAE5;
-
-  --border: #E5E7EB;
-  --shadow: rgba(4, 120, 87, 0.10);
+  --rekany-dark: #1B5E20;
+  --rekany-light: #4CAF50;
+  --rekany-beige: #F8F5E9;
+  --rekany-white: #FFFFFF;
+  --rekany-gray: #37474F;
+  --rekany-cream: #F0EBD8;
 }
 
 @theme {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
-
   --color-text: var(--text);
   --color-muted: var(--muted);
 
-  --color-primary: var(--primary-500);
-  --color-primary-dark: var(--primary-700);
-  --color-primary-light: var(--primary-100);
+  --color-rekany-dark: #1B5E20;
+  --color-rekany-light: #4CAF50;
+  --color-rekany-beige: #F8F5E9;
+  --color-rekany-white: #FFFFFF;
+  --color-rekany-gray: #37474F;
+  --color-rekany-cream: #F0EBD8;
 
-  --color-border: var(--border);
-
-  --font-sans: "Inter", system-ui, sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-inter: "Inter", sans-serif;
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-sans);
+  background-color: var(--rekany-beige);
+  color: var(--rekany-gray);
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-poppins);
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Hover lift effect */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(27, 94, 32, 0.12);
+}
+
+/* Button hover */
+.btn-primary {
+  background: linear-gradient(135deg, #1B5E20 0%, #4CAF50 100%);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(27, 94, 32, 0.3);
+}
+
+/* Input focus */
+.form-input {
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.form-input:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1);
+  outline: none;
+}
+
+/* Navigation link underline animation */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #4CAF50;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }

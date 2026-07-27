@@ -2,12 +2,14 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import NotFound404 from "./components/NotFound404";
 import HomePage from "./pages/Home/Home";
+import ContactPage from "./pages/Contact/ContactPage";
 
 export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Route>
 
       <Route path="*" element={<NotFound404 />} />

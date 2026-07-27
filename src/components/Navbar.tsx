@@ -1,274 +1,117 @@
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { IoDiamondOutline } from "react-icons/io5";
-import { FiShoppingCart, FiChevronDown, FiLogIn, FiUserPlus, FiX, FiMenu } from "react-icons/fi";
-
-const NAV_LINKS = [
-  { label: "Accueil", href: "/" },
-  { label: "À propos", href: "/à-propos" },
-  { label: "Services", href: "/services" },
-  { label: "Blog", href: "/blog" },
-  { label: "Produits", href: "/produits" },
-  { label: "Contact", href: "/contact" },
-];
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Leaf, Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setDropdownOpen(false);
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
       }
     };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [mobileOpen]);
+  const navLinks = [
+    { name: "Accueil", path: "/" },
+    { name: "Nos Produits", path: "/produits" },
+    { name: "Traçabilité", path: "/tracabilite" },
+    { name: "À Propos", path: "/a-propos" },
+    { name: "Contact", path: "/contact" },
+  ];
 
   return (
-    <>
-      <motion.nav
-        animate={{
-          backgroundColor: scrolled || mobileOpen ? "rgba(255,255,255,0.97)" : "rgba(255,255,255,0)",
-          boxShadow: scrolled || mobileOpen
-            ? "0 2px 24px 0 rgba(0,0,0,0.08)"
-            : "0 0px 0px 0 rgba(0,0,0,0)",
-          paddingTop: scrolled ? "10px" : "22px",
-          paddingBottom: scrolled ? "10px" : "22px",
-        }}
-        transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 px-6 md:px-8 flex items-center justify-between"
-        style={{ backdropFilter: scrolled || mobileOpen ? "blur(12px)" : "none" }}
-      >
-        {/* Logo */}
-        <motion.a
-          href="/"
-          className="flex items-center gap-2 select-none"
-          whileHover={{ scale: 1.03 }}
-          transition={{ type: "spring", stiffness: 400, damping: 20 }}
-        >
-          <span className="flex items-center justify-center rounded-xl bg-gray-900 text-white" style={{ width: 38, height: 38 }}>
-            <IoDiamondOutline size={20} />
-          </span>
-          <span className="text-gray-900 font-bold tracking-tight text-xl" style={{ letterSpacing: "-0.02em" }}>
-            Mada Stones
-          </span>
-        </motion.a>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "shadow-lg" : ""
+      }`}
+    >
+      <div className="glass-card border-b border-white/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            {/* Logo */}
+            <Link to="/" className="flex items-center space-x-3">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rekany-dark to-rekany-light flex items-center justify-center">
+                <Leaf className="w-5 h-5 text-white" />
+              </div>
+              <span className="font-poppins font-bold text-xl text-rekany-dark tracking-tight">
+                REKANY AGRI
+              </span>
+            </Link>
 
-        {/* Nav links — desktop */}
-        <ul className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((item, i) => (
-            <li key={item.label}>
-              <motion.a
-                href={item.href}
-                className="relative text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                {item.label}
-                {i === 0 && (
-                  <motion.span
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gray-900 rounded-full"
-                    layoutId="underline"
-                  />
-                )}
-              </motion.a>
-            </li>
-          ))}
-        </ul>
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-8">
+              {navLinks.map((link) => {
+                const isActive = location.pathname === link.path;
+                return (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`nav-link text-sm font-medium transition-colors ${
+                      isActive
+                        ? "text-rekany-dark font-semibold"
+                        : "text-rekany-gray hover:text-rekany-dark"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
+              <button className="btn-primary text-white px-6 py-2.5 rounded-full font-medium text-sm">
+                Commander
+              </button>
+            </div>
 
-        {/* Right actions — desktop */}
-        <div className="hidden md:flex items-center gap-3">
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.93 }}
-            className="relative p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
-            aria-label="Panier"
-          >
-            <FiShoppingCart size={22} />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-gray-900 rounded-full" />
-          </motion.button>
-
-          <div className="relative" ref={dropdownRef}>
-            <motion.button
-              onClick={() => setDropdownOpen((v) => !v)}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
-              className="flex items-center gap-2 bg-gray-900 text-white text-sm font-semibold px-5 py-2.5 rounded-xl"
+            {/* Mobile menu button */}
+            <button
+              className="md:hidden text-rekany-gray p-2 focus:outline-none"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle Menu"
             >
-              Mon compte
-              <motion.span
-                animate={{ rotate: dropdownOpen ? 180 : 0 }}
-                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-              >
-                <FiChevronDown size={16} />
-              </motion.span>
-            </motion.button>
-
-            <AnimatePresence>
-              {dropdownOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8, scale: 0.97 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -8, scale: 0.97 }}
-                  transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-                  className="absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden"
-                  style={{ transformOrigin: "top right" }}
-                >
-                  <a
-                    href="#"
-                    onClick={() => setDropdownOpen(false)}
-                    className="flex items-center gap-3 px-5 py-3.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-                  >
-                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 text-gray-700">
-                      <FiLogIn size={16} />
-                    </span>
-                    Se connecter
-                  </a>
-                  <div className="mx-4 h-px bg-gray-100" />
-                  <a
-                    href="#"
-                    onClick={() => setDropdownOpen(false)}
-                    className="flex items-center gap-3 px-5 py-3.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-                  >
-                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-900 text-white">
-                      <FiUserPlus size={16} />
-                    </span>
-                    S'inscrire
-                  </a>
-                </motion.div>
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
               )}
-            </AnimatePresence>
+            </button>
           </div>
         </div>
+      </div>
 
-        {/* Burger — mobile */}
-        <motion.button
-          className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
-          onClick={() => setMobileOpen((v) => !v)}
-          whileTap={{ scale: 0.93 }}
-          aria-label="Menu"
-        >
-          <AnimatePresence mode="wait" initial={false}>
-            {mobileOpen ? (
-              <motion.span
-                key="close"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.18 }}
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden glass-card border-t border-white/20">
+          <div className="px-4 pt-2 pb-6 space-y-2">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block px-3 py-2 text-base font-medium rounded-lg ${
+                  location.pathname === link.path
+                    ? "text-rekany-dark font-semibold bg-rekany-light/10"
+                    : "text-rekany-gray hover:text-rekany-dark hover:bg-white/40"
+                }`}
               >
-                <FiX size={24} />
-              </motion.span>
-            ) : (
-              <motion.span
-                key="open"
-                initial={{ rotate: 90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.18 }}
-              >
-                <FiMenu size={24} />
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </motion.button>
-      </motion.nav>
-
-      {/* Mobile menu panel */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
-            className="fixed inset-0 z-40 bg-white flex flex-col pt-24 pb-8 px-6 md:hidden overflow-y-auto"
-          >
-            {/* Nav links */}
-            <ul className="flex flex-col gap-1 mb-6">
-              {NAV_LINKS.map((item, i) => (
-                <motion.li
-                  key={item.label}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.06 + i * 0.05, duration: 0.22 }}
-                >
-                  <a
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="block text-lg font-semibold text-gray-800 hover:text-gray-900 py-3 border-b border-gray-100 transition-colors"
-                  >
-                    {item.label}
-                  </a>
-                </motion.li>
-              ))}
-            </ul>
-
-            {/* Divider */}
-            <div className="h-px bg-gray-100 mb-6" />
-
-            {/* Panier */}
-            <motion.a
-              href="#"
-              initial={{ opacity: 0, x: -16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.38, duration: 0.22 }}
-              onClick={() => setMobileOpen(false)}
-              className="flex items-center gap-3 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors mb-1"
-            >
-              <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-gray-100 text-gray-700 relative">
-                <FiShoppingCart size={18} />
-                <span className="absolute top-1 right-1 w-2 h-2 bg-gray-900 rounded-full" />
-              </span>
-              Mon panier
-            </motion.a>
-
-            {/* Se connecter */}
-            <motion.a
-              href="#"
-              initial={{ opacity: 0, x: -16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.43, duration: 0.22 }}
-              onClick={() => setMobileOpen(false)}
-              className="flex items-center gap-3 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors mb-1"
-            >
-              <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-gray-100 text-gray-700">
-                <FiLogIn size={18} />
-              </span>
-              Se connecter
-            </motion.a>
-
-            {/* S'inscrire */}
-            <motion.a
-              href="#"
-              initial={{ opacity: 0, x: -16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.48, duration: 0.22 }}
-              onClick={() => setMobileOpen(false)}
-              className="flex items-center gap-3 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-gray-900 text-white">
-                <FiUserPlus size={18} />
-              </span>
-              S'inscrire
-            </motion.a>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+                {link.name}
+              </Link>
+            ))}
+            <div className="pt-2">
+              <button className="btn-primary w-full text-white px-6 py-2.5 rounded-full font-medium text-sm">
+                Commander
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </nav>
   );
 }
