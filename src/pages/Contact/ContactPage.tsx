@@ -4,11 +4,9 @@ import {
   MapPin,
   Phone,
   Mail,
-  Send,
   CheckCircle,
   Clock,
   Globe,
-  ShoppingBag,
   Download,
   Leaf,
 } from "lucide-react";
