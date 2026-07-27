@@ -5,8 +5,8 @@ import { Play, X, ArrowDown } from "lucide-react";
 import geodes from "@/assets/images/geodes.jpg";
 import towers from "@/assets/images/towers.jpg";
 import clusters from "@/assets/images/clusters.jpg";
-type Category = {
 
+type Category = {
   id: number;
   name: string;
   image: string;

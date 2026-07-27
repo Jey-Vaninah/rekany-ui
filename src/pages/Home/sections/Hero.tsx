@@ -17,13 +17,18 @@ export default function Hero() {
       className="relative overflow-hidden bg-cover bg-center pt-32 pb-20 md:pt-40 md:pb-28"
       style={{ backgroundImage: `url(${bg})` }}
     >
+      {/* BASE DARK OVERLAY */}
       <div className="absolute inset-0 bg-black/60" />
+
+      {/* 🔥 FIX NAVBAR ZONE (IMPORTANT) */}
+      <div className="absolute top-0 left-0 right-0 h-16 bg-white/90 backdrop-blur-md border-b border-black/5 z-10" />
 
       <div className="relative z-10 px-6 sm:px-10 lg:px-16 xl:px-24">
         <div className="min-h-[700px] rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md px-10 py-16 md:px-16 md:py-24">
 
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
 
+            {/* LEFT CONTENT */}
             <div className="space-y-8 text-white lg:col-span-7">
 
               <motion.div
@@ -80,6 +85,7 @@ export default function Hero() {
                 </button>
               </motion.div>
 
+              {/* STATS */}
               <div className="grid grid-cols-3 gap-10 border-t border-white/10 pt-6 text-left">
 
                 {stats.map((item, i) => (
@@ -88,16 +94,11 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{
-                      duration: 1.2,
-                      delay: i * 0.25,
-                    }}
-                    className="text-left"
+                    transition={{ duration: 1.2, delay: i * 0.25 }}
                   >
                     <div className="text-3xl font-bold text-white">
                       <Counter value={item.value} suffix="+" />
                     </div>
-
                     <p className="text-xs text-white/60 mt-1">
                       {item.label}
                     </p>
@@ -106,6 +107,7 @@ export default function Hero() {
 
               </div>
 
+              {/* RATING */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -125,6 +127,7 @@ export default function Hero() {
 
             </div>
 
+            {/* RIGHT CARD */}
             <div className="hidden lg:flex lg:col-span-5 justify-end">
 
               <motion.div
