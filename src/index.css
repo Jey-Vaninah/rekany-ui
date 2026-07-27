@@ -1,30 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #F8F5E9;
-  --surface: #FFFFFF;
-  --text: #37474F;
-  --muted: #6B7280;
   --rekany-dark: #1B5E20;
-  --rekany-light: #4CAF50;
+  --rekany-light: #34D399;
+  --rekany-mint: #6EE7B7;
   --rekany-beige: #F8F5E9;
+  --rekany-cream: #F0EBD8;
+  --rekany-terra: #8D6E63;
   --rekany-white: #FFFFFF;
   --rekany-gray: #37474F;
-  --rekany-cream: #F0EBD8;
+  --rekany-fair: #D4A017;
+  --rekany-marang: #EA580C;
+  --rekany-orange: #F97316;
+  /* Ajout de l'orange */
 }
 
 @theme {
-  --color-bg: var(--bg);
-  --color-surface: var(--surface);
-  --color-text: var(--text);
-  --color-muted: var(--muted);
-
   --color-rekany-dark: #1B5E20;
-  --color-rekany-light: #4CAF50;
+  --color-rekany-light: #34D399;
+  --color-rekany-mint: #6EE7B7;
   --color-rekany-beige: #F8F5E9;
+  --color-rekany-cream: #F0EBD8;
+  --color-rekany-terra: #8D6E63;
   --color-rekany-white: #FFFFFF;
   --color-rekany-gray: #37474F;
-  --color-rekany-cream: #F0EBD8;
+  --color-rekany-fair: #D4A017;
+  --color-rekany-marang: #EA580C;
+  --color-rekany-orange: #F97316;
+  /* Ajout de l'orange */
 
   --font-poppins: "Poppins", sans-serif;
   --font-inter: "Inter", sans-serif;
@@ -37,11 +40,15 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-poppins);
 }
 
-/* Glassmorphism card */
 .glass-card {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
@@ -49,7 +56,6 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-/* Hover lift effect */
 .hover-lift {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -59,9 +65,8 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 20px 40px rgba(27, 94, 32, 0.12);
 }
 
-/* Button hover */
 .btn-primary {
-  background: linear-gradient(135deg, #1B5E20 0%, #4CAF50 100%);
+  background: linear-gradient(135deg, #1B5E20 0%, #34D399 100%);
   transition: all 0.3s ease;
 }
 
@@ -70,19 +75,17 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 10px 30px rgba(27, 94, 32, 0.3);
 }
 
-/* Input focus */
 .form-input {
   transition: all 0.3s ease;
   border: 2px solid transparent;
 }
 
 .form-input:focus {
-  border-color: #4CAF50;
-  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1);
+  border-color: #34D399;
+  box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.1);
   outline: none;
 }
 
-/* Navigation link underline animation */
 .nav-link {
   position: relative;
 }
@@ -94,7 +97,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   width: 0;
   height: 2px;
-  background: #4CAF50;
+  background: #34D399;
   transition: width 0.3s ease;
 }
 

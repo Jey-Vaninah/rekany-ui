@@ -30,9 +30,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "shadow-lg" : ""
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "shadow-lg" : ""
+        }`}
     >
       <div className="glass-card border-b border-white/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,11 +54,10 @@ export default function Navbar() {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`nav-link text-sm font-medium transition-colors ${
-                      isActive
+                    className={`nav-link text-sm font-medium transition-colors ${isActive
                         ? "text-rekany-dark font-semibold"
                         : "text-rekany-gray hover:text-rekany-dark"
-                    }`}
+                      }`}
                   >
                     {link.name}
                   </Link>
@@ -95,11 +93,10 @@ export default function Navbar() {
                 key={link.path}
                 to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`block px-3 py-2 text-base font-medium rounded-lg ${
-                  location.pathname === link.path
+                className={`block px-3 py-2 text-base font-medium rounded-lg ${location.pathname === link.path
                     ? "text-rekany-dark font-semibold bg-rekany-light/10"
                     : "text-rekany-gray hover:text-rekany-dark hover:bg-white/40"
-                }`}
+                  }`}
               >
                 {link.name}
               </Link>

@@ -17,12 +17,12 @@ export default function Button({
     ...props
 }: ButtonProps) {
     const base =
-        "inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition";
+        "inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300";
 
     const styles: Record<ButtonVariant, string> = {
-        primary: "bg-primary text-white hover:bg-secondary",
+        primary: "bg-rekany-orange text-white hover:bg-rekany-dark",
         secondary:
-            "bg-white/10 text-white border border-white/20 hover:bg-white/20 backdrop-blur",
+            "bg-transparent text-white border-2 border-white/30 hover:border-rekany-ldark hover:text-rekany-dark",
     };
 
     return (

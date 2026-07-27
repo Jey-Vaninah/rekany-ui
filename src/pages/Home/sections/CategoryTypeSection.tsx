@@ -1,21 +1,44 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Play, X, ArrowDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import geodes from "@/assets/images/geodes.jpg";
-import towers from "@/assets/images/towers.jpg";
-import clusters from "@/assets/images/clusters.jpg";
+import legumes from "@/assets/images/potiron.jpg";
+import transformes from "@/assets/images/confiture.jpg";
+import fruits from "@/assets/images/banane.jpg";
+
 type Category = {
-
   id: number;
   name: string;
   image: string;
+  description: string;
 }
 
 const categories: Category[] = [
-  { id: 1, name: "Geodes", image: geodes },
-  { id: 2, name: "Towers", image: towers },
-  { id: 3, name: "Clusters", image: clusters },
+  {
+    id: 1,
+    name: "Fruits Bio",
+    image: fruits,
+    description: "Mangues, litchis, bananes, ananas..."
+  },
+  {
+    id: 2,
+    name: "Légumes Bio",
+    image: legumes,
+    description: "Tomates, poivrons, haricots, salades..."
+  },
+  {
+    id: 3,
+    name: "Produits Transformés",
+    image: transformes,
+    description: "Confitures, jus, fruits séchés..."
+  },
+];
+
+// Diaporama des images
+const slideshowImages = [
+  { src: fruits, label: "🍎 Fruits Bio de Madagascar" },
+  { src: legumes, label: "🥬 Légumes Bio & Frais" },
+  { src: transformes, label: "🍯 Produits Transformés Bio" },
 ];
 
 function CategoryCard({ cat, index }: { cat: Category; index: number }) {
@@ -25,9 +48,9 @@ function CategoryCard({ cat, index }: { cat: Category; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, delay: index * 0.15 }}
-      className="flex-1 min-w-[140px] max-w-[160px] mx-auto bg-surface-light border border-border rounded-full py-8 px-4 flex flex-col items-center gap-6 group hover:bg-surface hover:border-primary transition-all duration-500 shadow-sm hover:shadow-md cursor-pointer"
+      className="flex-1 min-w-[140px] max-w-[180px] mx-auto bg-rekany-white border border-rekany-cream rounded-full py-8 px-4 flex flex-col items-center gap-6 group hover:bg-rekany-white hover:border-rekany-orange transition-all duration-500 shadow-sm hover:shadow-md cursor-pointer"
     >
-      <div className="w-16 h-16 rounded-full overflow-hidden border border-border shadow-inner">
+      <div className="w-24 h-24 rounded-full overflow-hidden border border-rekany-cream shadow-inner">
         <img
           src={cat.image}
           alt={cat.name}
@@ -35,22 +58,34 @@ function CategoryCard({ cat, index }: { cat: Category; index: number }) {
         />
       </div>
 
-      <span className="text-sm font-serif font-bold text-text-dark group-hover:text-primary transition-colors">
+      <span className="text-sm font-poppins font-bold text-rekany-gray group-hover:text-rekany-orange transition-colors text-center">
         {cat.name}
       </span>
-
-      <div className="w-8 h-8 rounded-full bg-surface border border-border group-hover:bg-primary group-hover:text-white flex items-center justify-center text-muted transition-all duration-300">
-        <ArrowDown className="h-3.5 w-3.5 -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
-      </div>
     </motion.div>
   );
 }
 
 export default function CategoryTypeSection() {
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slideshowImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slideshowImages.length) % slideshowImages.length);
+  };
+
+  // Auto-play
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [currentSlide]);
 
   return (
-    <section id="types" className="py-20 md:py-28 overflow-hidden bg-bg">
+    <section id="types" className="py-20 md:py-28 overflow-hidden bg-rekany-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -61,21 +96,41 @@ export default function CategoryTypeSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
-              className="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden shadow-xl border border-border group"
+              className="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden shadow-xl border border-rekany-cream group"
             >
               <img
-                src={clusters}
-                alt="video thumbnail"
-                className="w-full h-full object-cover"
+                src={slideshowImages[currentSlide].src}
+                alt="Nos produits bio"
+                className="w-full h-full object-cover transition-opacity duration-500"
               />
 
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
 
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full">
+                <p className="text-white text-xs font-medium">
+                  {slideshowImages[currentSlide].label}
+                </p>
+              </div>
+
+              {/* Boutons navigation */}
               <button
-                onClick={() => setIsVideoOpen(true)}
-                className="absolute inset-0 m-auto w-16 h-16 rounded-full bg-surface/90 text-primary flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-all duration-300"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevSlide();
+                }}
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white bg-black/30 hover:bg-black/50 rounded-full p-2 transition-all duration-300"
               >
-                <Play className="h-6 w-6" />
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextSlide();
+                }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white bg-black/30 hover:bg-black/50 rounded-full p-2 transition-all duration-300"
+              >
+                <ChevronRight className="h-5 w-5" />
               </button>
             </motion.div>
           </div>
@@ -88,12 +143,12 @@ export default function CategoryTypeSection() {
               transition={{ duration: 0.8 }}
               className="space-y-4"
             >
-              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-text-dark">
-                Choose The Type!
+              <h2 className="text-4xl lg:text-5xl font-poppins font-bold text-rekany-gray">
+                Nos <span className="text-rekany-orange">Produits Bio</span>
               </h2>
 
-              <p className="text-muted text-sm leading-relaxed max-w-lg">
-                Filtrez notre catalogue en fonction de la structure minérale recherchée.
+              <p className="text-rekany-gray/70 text-sm leading-relaxed max-w-lg">
+                Découvrez notre gamme de produits certifiés bio, cultivés dans le respect de l'environnement et des communautés locales.
               </p>
             </motion.div>
 
@@ -102,39 +157,21 @@ export default function CategoryTypeSection() {
                 <CategoryCard key={cat.id} cat={cat} index={i} />
               ))}
             </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="pt-4"
+            >
+              <p className="text-xs text-rekany-gray/50 italic">
+                🌱 Tous nos produits sont issus du commerce équitable et bénéficient d'une traçabilité complète.
+              </p>
+            </motion.div>
           </div>
         </div>
       </div>
-
-      <AnimatePresence>
-        {isVideoOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
-          >
-            <motion.div
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              className="relative w-full max-w-4xl aspect-video bg-black rounded-3xl overflow-hidden"
-            >
-              <button
-                onClick={() => setIsVideoOpen(false)}
-                className="absolute top-4 right-4 text-white"
-              >
-                <X />
-              </button>
-
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }

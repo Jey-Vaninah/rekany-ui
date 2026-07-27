@@ -1,63 +1,63 @@
 import { motion } from "framer-motion";
 import {
-    Search,
-    ClipboardList,
-    FileText,
-    CalendarCheck,
-    HardHat,
-    KeyRound,
+    Sprout,
+    Users,
+    ClipboardCheck,
+    Truck,
+    ShoppingBag,
+    Award,
 } from "lucide-react";
 
 const steps = [
     {
-        icon: Search,
-        title: "Analyse du projet",
-        desc: "Compréhension de vos besoins, contraintes et ambitions.",
+        icon: Sprout,
+        title: "Culture Bio & Durable",
+        desc: "Cultivé sous serre avec des énergies renouvelables et des pratiques respectueuses de l'environnement.",
     },
     {
-        icon: ClipboardList,
-        title: "Étude technique",
-        desc: "Faisabilité, ingénierie et préconisations détaillées.",
+        icon: Users,
+        title: "Commerce Équitable",
+        desc: "Partenariat juste avec les paysans locaux pour garantir une rémunération équitable et des conditions de travail dignes.",
     },
     {
-        icon: FileText,
-        title: "Devis détaillé",
-        desc: "Chiffrage transparent, planning et engagements contractuels.",
+        icon: ClipboardCheck,
+        title: "Contrôle & Traçabilité",
+        desc: "Suivi numérique rigoureux de chaque produit, de la récolte jusqu'au consommateur final.",
     },
     {
-        icon: CalendarCheck,
-        title: "Planification",
-        desc: "Coordination des corps d'état et sécurisation du chantier.",
+        icon: Truck,
+        title: "Logistique Transparente",
+        desc: "Livraison en ligne avec suivi en temps réel pour garantir la fraîcheur et la qualité des produits.",
     },
     {
-        icon: HardHat,
-        title: "Exécution",
-        desc: "Pilotage qualité, suivi quotidien et respect des délais.",
+        icon: ShoppingBag,
+        title: "Distribution Équitable",
+        desc: "Vente en grandes surfaces, marchés dédiés et e-commerce avec des prix adaptés au pouvoir d'achat local.",
     },
     {
-        icon: KeyRound,
-        title: "Livraison finale",
-        desc: "Réception, garanties et accompagnement post-livraison.",
+        icon: Award,
+        title: "Qualité & Certification",
+        desc: "Produits certifiés bio, garantissant la santé des consommateurs et la protection de l'environnement.",
     },
 ];
 
 export default function MethodologySection() {
     return (
-        <section className="py-20 bg-bg text-text-dark">
+        <section className="py-20 bg-rekany-cream text-rekany-gray">
             <div className="mx-auto max-w-7xl px-4">
 
                 <div className="text-center max-w-2xl mx-auto">
-                    <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary border border-primary/20">
-                        <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                        Méthodologie
+                    <span className="inline-flex items-center gap-2 rounded-full bg-rekany-orange/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-rekany-orange border border-rekany-orange/20">
+                        <span className="h-1.5 w-1.5 rounded-full bg-rekany-orange" />
+                        Notre Engagement
                     </span>
 
-                    <h2 className="mt-4 text-3xl md:text-5xl font-serif font-bold">
-                        Comment nous travaillons
+                    <h2 className="mt-4 text-3xl md:text-5xl font-poppins font-bold text-rekany-gray">
+                        Du champ à votre table
                     </h2>
 
-                    <p className="mt-4 text-muted text-sm md:text-base">
-                        Un processus structuré en six étapes pour garantir un résultat professionnel, sécurisé et transparent.
+                    <p className="mt-4 text-rekany-gray/70 text-sm md:text-base">
+                        Un processus transparent et responsable, du producteur au consommateur, pour garantir la qualité et l'équité à chaque étape.
                     </p>
                 </div>
 
@@ -75,30 +75,45 @@ export default function MethodologySection() {
                                     duration: 0.6,
                                     delay: i * 0.07,
                                 }}
-                                className="group rounded-2xl border border-border bg-surface p-6 transition hover:-translate-y-1 hover:shadow-md"
+                                className="group rounded-2xl border border-rekany-cream bg-rekany-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-rekany-orange/30"
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className="h-12 w-12 grid place-items-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition">
+                                    <div className="h-12 w-12 grid place-items-center rounded-xl bg-rekany-orange/10 text-rekany-orange group-hover:bg-rekany-orange group-hover:text-white transition-all duration-300">
                                         <Icon className="h-5 w-5" />
                                     </div>
 
                                     <div>
-                                        <div className="text-xs text-muted">
+                                        <div className="text-xs text-rekany-gray/50">
                                             Étape {String(i + 1).padStart(2, "0")}
                                         </div>
-                                        <div className="font-bold">
+                                        <div className="font-bold text-rekany-gray">
                                             {step.title}
                                         </div>
                                     </div>
                                 </div>
 
-                                <p className="mt-4 text-sm text-muted">
+                                <p className="mt-4 text-sm text-rekany-gray/70">
                                     {step.desc}
                                 </p>
                             </motion.div>
                         );
                     })}
                 </div>
+
+                {/* Ligne de temps simplifiée */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="mt-12 text-center"
+                >
+                    <div className="inline-flex items-center gap-3 rounded-full bg-rekany-orange/10 px-6 py-3 border border-rekany-orange/20">
+                        <span className="text-sm font-semibold text-rekany-orange">
+                            🌱 "BIO POUR TOUS" — Homme au centre, technologie au service du bien-être
+                        </span>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );
