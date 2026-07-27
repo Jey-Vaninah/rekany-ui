@@ -30,10 +30,6 @@ export default function ProductCard({ image, name, price }: Props) {
                     <h3 className="text-sm font-semibold text-text-dark group-hover:text-primary transition-colors">
                         {name}
                     </h3>
-
-                    <span className="text-[10px] text-muted tracking-wider uppercase font-medium block">
-                        Raw Specimen
-                    </span>
                 </div>
 
                 <span className="text-sm font-bold text-primary">

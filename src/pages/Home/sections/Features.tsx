@@ -1,38 +1,38 @@
 import { motion } from "framer-motion";
-import { Truck, Gem, ShieldCheck, Award } from "lucide-react";
+import { Truck, ShieldCheck, Award, Sprout } from "lucide-react";
 
 export default function Features() {
   const items = [
     {
       icon: Truck,
-      title: "Export International",
-      desc: "Livraison sécurisée vers plus de 25 pays avec suivi complet et logistique professionnelle.",
+      title: "Logistique & Traçabilité",
+      desc: "Suivi numérique de la livraison, du champ jusqu'au consommateur. Circuit court et commerce équitable pour une transparence totale.",
     },
     {
-      icon: Gem,
-      title: "Sélection Premium",
-      desc: "Chaque pierre est sélectionnée directement à Madagascar selon des critères de qualité stricts.",
+      icon: Sprout,
+      title: "Culture Bio & Durable",
+      desc: "Production sous serre pour garantir une disponibilité toute l'année, respectueuse des normes environnementales et des énergies renouvelables.",
     },
     {
       icon: ShieldCheck,
-      title: "Certification Garantie",
-      desc: "Toutes nos pierres sont accompagnées de certificats d’authenticité et de provenance.",
+      title: "Certification & Traçabilité",
+      desc: "Produits certifiés bio avec un processus de traçabilité numérique rigoureux, garantissant l'authenticité et la qualité de chaque récolte.",
     },
     {
       icon: Award,
-      title: "Qualité Export AAA+",
-      desc: "Nous travaillons uniquement avec des pierres de qualité supérieure destinées au marché international.",
+      title: "Santé & Engagement Social",
+      desc: "Placer l'Homme au centre de nos préoccupations. Lutter contre la malnutrition en offrant des produits sains et équitables à tous.",
     },
   ];
 
   return (
     <section
       id="features"
-      className="py-16 border-y border-border bg-surface"
+      className="py-16 border-y border-rekany-cream bg-rekany-beige"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-border">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-rekany-cream">
 
           {items.map((item, index) => {
             const Icon = item.icon;
@@ -47,15 +47,15 @@ export default function Features() {
                 className="p-8 flex flex-col items-start text-left group cursor-pointer"
               >
 
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-5 transition-all duration-300 group-hover:bg-primary group-hover:text-white">
+                <div className="w-12 h-12 rounded-full bg-rekany-orange/10 flex items-center justify-center text-rekany-orange mb-5 transition-all duration-300 group-hover:bg-rekany-orange group-hover:text-white">
                   <Icon className="w-5 h-5" />
                 </div>
 
-                <h3 className="text-base font-serif font-bold text-text-dark mb-2 group-hover:text-primary transition">
+                <h3 className="text-base font-serif font-bold text-rekany-gray mb-2 group-hover:text-rekany-orange transition">
                   {item.title}
                 </h3>
 
-                <p className="text-muted text-sm leading-relaxed">
+                <p className="text-rekany-gray/70 text-sm leading-relaxed">
                   {item.desc}
                 </p>
 

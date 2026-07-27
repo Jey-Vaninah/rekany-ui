@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { FiArrowLeft, FiHome } from "react-icons/fi";
-import { IoDiamondOutline } from "react-icons/io5";
-import heroImage from "../assets/hero.png";
+import heroImage from "../assets/images/tomate.jpg";
 
 export default function NotFound404() {
   return (
@@ -21,7 +20,7 @@ export default function NotFound404() {
 
       <section className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-6 py-16 text-center">
         <div className="flex gap-3">
-          <p className="text-[150px] font-extrabold text-transparent bg-clip-text bg-center bg-cover" 
+          <p className="text-[150px] font-extrabold text-transparent bg-clip-text bg-center bg-cover"
             style={{ backgroundImage: "url('https://i.pinimg.com/736x/f7/89/45/f78945a8579ebba360bdaba7d7103eb4.jpg')" }}
           >404</p>
         </div>
