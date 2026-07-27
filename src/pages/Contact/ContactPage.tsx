@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   Mail,
-  Phone,
-  MapPin,
+  Phone,        // ← Gardez (votre version)
+  MapPin,       // ← Gardez (votre version)
   Clock,
   Leaf,
   Send,
@@ -13,6 +13,8 @@ import {
   CheckCircle2,
   Sparkles,
   Globe,
+  CheckCircle,  // ← Ajoutez (version distante)
+  Download,     // ← Ajoutez (version distante)
 } from "lucide-react";
 import { FiFacebook, FiInstagram, FiLinkedin } from "react-icons/fi";
 import rizierImage from "../../assets/images/rizier.jpg";
