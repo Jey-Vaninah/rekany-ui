@@ -13,8 +13,7 @@ import {
 } from "lucide-react";
 
 import { CATEGORIES, formatPrice, products, type Product } from "@/data/products";
-
-const heroBowl = "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80";
+import salade2 from "@/assets/images/salade2.jpg";
 
 const origins = Array.from(new Set<string>(products.map((p: Product) => p.origin))).sort();
 const certifications = Array.from(new Set<string>(products.map((p: Product) => p.certification))).sort();
@@ -152,7 +151,7 @@ export default function ProductsPage() {
               <div className="pointer-events-none absolute -inset-6 rounded-full bg-rekany-light/10 blur-3xl" />
               <div className="relative overflow-hidden rounded-[2rem] border border-white/80 bg-white/70 p-3 shadow-lg backdrop-blur-sm">
                 <motion.img
-                  src={heroBowl}
+                  src={salade2}
                   alt="Bol de produits biologiques frais REKANY AGRI"
                   width={1200}
                   height={1000}
@@ -209,11 +208,10 @@ export default function ProductsPage() {
                 type="button"
                 onClick={() => setCategory(c)}
                 aria-pressed={category === c}
-                className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${
-                  category === c
-                    ? "bg-rekany-dark text-white shadow-sm"
-                    : "bg-rekany-cream/80 text-rekany-gray hover:bg-rekany-mint/40 hover:text-rekany-dark"
-                }`}
+                className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${category === c
+                  ? "bg-rekany-dark text-white shadow-sm"
+                  : "bg-rekany-cream/80 text-rekany-gray hover:bg-rekany-mint/40 hover:text-rekany-dark"
+                  }`}
               >
                 {c}
               </button>
