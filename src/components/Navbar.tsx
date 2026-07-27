@@ -23,7 +23,6 @@ export default function Navbar() {
   const navLinks = [
     { name: "Accueil", path: "/" },
     { name: "Nos Produits", path: "/produits" },
-    { name: "Traçabilité", path: "/tracabilite" },
     { name: "À Propos", path: "/a-propos" },
     { name: "Contact", path: "/contact" },
   ];
@@ -55,8 +54,8 @@ export default function Navbar() {
                     key={link.path}
                     to={link.path}
                     className={`nav-link text-sm font-medium transition-colors ${isActive
-                        ? "text-rekany-dark font-semibold"
-                        : "text-rekany-gray hover:text-rekany-dark"
+                      ? "text-rekany-dark font-semibold"
+                      : "text-rekany-gray hover:text-rekany-dark"
                       }`}
                   >
                     {link.name}
@@ -94,8 +93,8 @@ export default function Navbar() {
                 to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`block px-3 py-2 text-base font-medium rounded-lg ${location.pathname === link.path
-                    ? "text-rekany-dark font-semibold bg-rekany-light/10"
-                    : "text-rekany-gray hover:text-rekany-dark hover:bg-white/40"
+                  ? "text-rekany-dark font-semibold bg-rekany-light/10"
+                  : "text-rekany-gray hover:text-rekany-dark hover:bg-white/40"
                   }`}
               >
                 {link.name}

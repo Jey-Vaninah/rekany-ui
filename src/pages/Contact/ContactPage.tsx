@@ -3,17 +3,17 @@ import {
   MessageCircle,
   MapPin,
   Phone,
-  ArrowUpRight,
   Mail,
-  ExternalLink,
   Send,
   CheckCircle,
   Clock,
   Globe,
   ShoppingBag,
   Download,
+  Leaf,
 } from "lucide-react";
 import rizierImage from "../../assets/images/rizier.jpg";
+import Button from "../../components/ui/Button";
 
 const contactMethods = [
   {
@@ -98,30 +98,31 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-12">
+    <div className="min-h-screen pt-24 pb-12 bg-rekany-beige">
+      {/* Hero Section */}
       <section
         className="relative overflow-hidden bg-cover bg-center bg-no-repeat pt-12 pb-16 lg:pt-16 lg:pb-24"
         style={{ backgroundImage: `url(${rizierImage})` }}
       >
-        <div className="absolute inset-0 bg-white/70 backdrop-blur-[2px]" />
-        <div className="absolute top-0 right-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-rekany-light/20 blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-72 w-72 translate-y-1/2 -translate-x-1/2 rounded-full bg-rekany-dark/20 blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-rekany-dark/80 via-rekany-dark/60 to-rekany-light/40 backdrop-blur-sm" />
+        <div className="absolute top-0 right-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-rekany-light/30 blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-72 w-72 translate-y-1/2 -translate-x-1/2 rounded-full bg-rekany-dark/30 blur-3xl" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="mb-6 inline-flex items-center space-x-2 rounded-full border border-rekany-light/20 bg-rekany-light/10 px-4 py-2 text-sm font-medium text-rekany-dark backdrop-blur-sm">
-              <MessageCircle className="h-4 w-4 text-rekany-light" />
+            <div className="mb-6 inline-flex items-center space-x-2 rounded-full border border-rekany-light/30 bg-rekany-light/20 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+              <MessageCircle className="h-4 w-4" />
               <span>Restons en contact</span>
             </div>
 
-            <h1 className="mb-6 font-poppins text-4xl font-bold leading-tight text-rekany-dark md:text-5xl lg:text-6xl">
+            <h1 className="mb-6 font-poppins text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
               Contactez{" "}
-              <span className="bg-gradient-to-r from-rekany-dark to-rekany-light bg-clip-text text-transparent">
+              <span className="text-rekany-light">
                 REKANY AGRI
               </span>
             </h1>
 
-            <p className="text-lg font-light leading-relaxed text-rekany-gray/80 md:text-xl">
+            <p className="text-lg font-light leading-relaxed text-white/80 md:text-xl">
               Une question sur nos produits bio, un projet d’export ou un partenariat ?
               Notre équipe vous répond avec la même passion que celle mêlée à nos terres.
             </p>
@@ -129,7 +130,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="pb-20 lg:pb-28">
+      {/* Contact Methods */}
+      <section className="pb-20 lg:pb-28 -mt-8 relative z-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-4">
             {contactMethods.map((item) => {
@@ -140,16 +142,16 @@ export default function ContactPage() {
                   href={item.href}
                   target={item.href.startsWith("http") ? "_blank" : undefined}
                   rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="group glass-card rounded-2xl p-8 hover-lift"
+                  className="group bg-rekany-white rounded-2xl p-6 border border-rekany-cream shadow-sm hover:shadow-xl hover:border-rekany-light/30 transition-all duration-300 hover:-translate-y-1"
                 >
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-rekany-dark to-rekany-light transition-transform duration-300 group-hover:scale-110">
-                    <Icon className="h-7 w-7 text-white" />
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-rekany-dark/10 to-rekany-light/10 text-rekany-light transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-rekany-dark group-hover:to-rekany-light group-hover:text-white">
+                    <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className="mb-3 font-poppins text-xl font-semibold text-rekany-dark">
+                  <h3 className="mb-2 font-poppins text-lg font-semibold text-rekany-dark">
                     {item.title}
                   </h3>
-                  <p className="mb-2 font-semibold text-rekany-dark">{item.value}</p>
-                  <p className="text-sm leading-relaxed text-rekany-gray/70">{item.hint}</p>
+                  <p className="mb-1 font-medium text-rekany-gray">{item.value}</p>
+                  <p className="text-sm text-rekany-gray/60">{item.hint}</p>
                 </a>
               );
             })}
@@ -157,23 +159,28 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* Form + Map */}
       <section className="pb-20 lg:pb-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-stretch gap-8 lg:grid-cols-2">
-            <div className="glass-card rounded-3xl p-8 md:p-10">
+            {/* Form */}
+            <div className="bg-rekany-white rounded-3xl p-8 md:p-10 border border-rekany-cream shadow-sm">
               <div className="mb-8">
-                <h2 className="mb-3 font-poppins text-2xl font-bold text-rekany-dark md:text-3xl">
-                  Envoyez-nous un message
-                </h2>
-                <p className="text-rekany-gray/70">
+                <div className="flex items-center gap-2 mb-3">
+                  <Leaf className="h-5 w-5 text-rekany-light" />
+                  <h2 className="font-poppins text-2xl font-bold text-rekany-dark md:text-3xl">
+                    Envoyez-nous un message
+                  </h2>
+                </div>
+                <p className="text-rekany-gray/60">
                   Remplissez ce formulaire et notre équipe vous répondra rapidement.
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid gap-6 md:grid-cols-2">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid gap-5 md:grid-cols-2">
                   <div>
-                    <label htmlFor="prenom" className="mb-2 block text-sm font-semibold text-rekany-dark">
+                    <label htmlFor="prenom" className="mb-1.5 block text-sm font-medium text-rekany-dark">
                       Prénom
                     </label>
                     <input
@@ -183,12 +190,12 @@ export default function ContactPage() {
                       value={formData.prenom}
                       onChange={handleChange}
                       required
-                      className="form-input w-full rounded-xl bg-white/80 px-4 py-3.5 text-rekany-gray placeholder-rekany-gray/40"
+                      className="w-full rounded-xl border border-rekany-cream bg-rekany-beige/30 px-4 py-3 text-rekany-gray placeholder-rekany-gray/40 focus:border-rekany-light focus:ring-2 focus:ring-rekany-light/20 outline-none transition-all duration-300"
                       placeholder="Votre prénom"
                     />
                   </div>
                   <div>
-                    <label htmlFor="nom" className="mb-2 block text-sm font-semibold text-rekany-dark">
+                    <label htmlFor="nom" className="mb-1.5 block text-sm font-medium text-rekany-dark">
                       Nom
                     </label>
                     <input
@@ -198,14 +205,14 @@ export default function ContactPage() {
                       value={formData.nom}
                       onChange={handleChange}
                       required
-                      className="form-input w-full rounded-xl bg-white/80 px-4 py-3.5 text-rekany-gray placeholder-rekany-gray/40"
+                      className="w-full rounded-xl border border-rekany-cream bg-rekany-beige/30 px-4 py-3 text-rekany-gray placeholder-rekany-gray/40 focus:border-rekany-light focus:ring-2 focus:ring-rekany-light/20 outline-none transition-all duration-300"
                       placeholder="Votre nom"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="mb-2 block text-sm font-semibold text-rekany-dark">
+                  <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-rekany-dark">
                     Adresse Email
                   </label>
                   <input
@@ -215,13 +222,13 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="form-input w-full rounded-xl bg-white/80 px-4 py-3.5 text-rekany-gray placeholder-rekany-gray/40"
+                    className="w-full rounded-xl border border-rekany-cream bg-rekany-beige/30 px-4 py-3 text-rekany-gray placeholder-rekany-gray/40 focus:border-rekany-light focus:ring-2 focus:ring-rekany-light/20 outline-none transition-all duration-300"
                     placeholder="exemple@email.com"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="telephone" className="mb-2 block text-sm font-semibold text-rekany-dark">
+                  <label htmlFor="telephone" className="mb-1.5 block text-sm font-medium text-rekany-dark">
                     Téléphone (optionnel)
                   </label>
                   <input
@@ -230,13 +237,13 @@ export default function ContactPage() {
                     name="telephone"
                     value={formData.telephone}
                     onChange={handleChange}
-                    className="form-input w-full rounded-xl bg-white/80 px-4 py-3.5 text-rekany-gray placeholder-rekany-gray/40"
+                    className="w-full rounded-xl border border-rekany-cream bg-rekany-beige/30 px-4 py-3 text-rekany-gray placeholder-rekany-gray/40 focus:border-rekany-light focus:ring-2 focus:ring-rekany-light/20 outline-none transition-all duration-300"
                     placeholder="+261 XX XX XXX XX"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="sujet" className="mb-2 block text-sm font-semibold text-rekany-dark">
+                  <label htmlFor="sujet" className="mb-1.5 block text-sm font-medium text-rekany-dark">
                     Sujet
                   </label>
                   <select
@@ -245,11 +252,9 @@ export default function ContactPage() {
                     value={formData.sujet}
                     onChange={handleChange}
                     required
-                    className="form-input w-full cursor-pointer rounded-xl bg-white/80 px-4 py-3.5 text-rekany-gray"
+                    className="w-full rounded-xl border border-rekany-cream bg-rekany-beige/30 px-4 py-3 text-rekany-gray focus:border-rekany-light focus:ring-2 focus:ring-rekany-light/20 outline-none transition-all duration-300"
                   >
-                    <option value="" disabled>
-                      Choisissez un sujet
-                    </option>
+                    <option value="" disabled>Choisissez un sujet</option>
                     <option value="particulier">Commande particulier</option>
                     <option value="grande-surface">Partenariat Grande Surface</option>
                     <option value="export">Export International</option>
@@ -261,7 +266,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="mb-2 block text-sm font-semibold text-rekany-dark">
+                  <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-rekany-dark">
                     Votre Message
                   </label>
                   <textarea
@@ -271,7 +276,7 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="form-input w-full resize-none rounded-xl bg-white/80 px-4 py-3.5 text-rekany-gray placeholder-rekany-gray/40"
+                    className="w-full resize-none rounded-xl border border-rekany-cream bg-rekany-beige/30 px-4 py-3 text-rekany-gray placeholder-rekany-gray/40 focus:border-rekany-light focus:ring-2 focus:ring-rekany-light/20 outline-none transition-all duration-300"
                     placeholder="Décrivez votre demande en détail..."
                   />
                 </div>
@@ -284,38 +289,27 @@ export default function ContactPage() {
                     checked={formData.consent}
                     onChange={handleChange}
                     required
-                    className="mt-1 h-5 w-5 cursor-pointer rounded border-rekany-gray/30 text-rekany-dark focus:ring-rekany-light"
+                    className="mt-1 h-5 w-5 cursor-pointer rounded border-rekany-cream text-rekany-light focus:ring-rekany-light"
                   />
-                  <label htmlFor="consent" className="text-sm leading-relaxed text-rekany-gray/70">
-                    J’accepte que mes données soient traitées par REKANY AGRI dans le cadre de ma demande. {" "}
-                    <a href="#" className="text-rekany-dark underline hover:text-rekany-light">
+                  <label htmlFor="consent" className="text-sm leading-relaxed text-rekany-gray/60">
+                    J’accepte que mes données soient traitées par REKANY AGRI dans le cadre de ma demande.{" "}
+                    <a href="#" className="text-rekany-light hover:underline">
                       Politique de confidentialité
                     </a>
                     .
                   </label>
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="btn-primary flex w-full items-center justify-center space-x-2 rounded-xl py-4 text-base font-semibold text-white disabled:opacity-75"
-                >
-                  {isSubmitting ? (
-                    <span className="animate-pulse">Envoi en cours...</span>
-                  ) : (
-                    <>
-                      <span>Envoyer le message</span>
-                      <Send className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                    </>
-                  )}
-                </button>
+                <Button type="submit" variant="primary" icon disabled={isSubmitting}>
+                  {isSubmitting ? "Envoi en cours..." : "Envoyer le message"}
+                </Button>
               </form>
 
               {isSubmitted && (
-                <div className="mt-6 rounded-xl border border-green-200 bg-green-50 p-4">
+                <div className="mt-6 rounded-xl border border-rekany-light/30 bg-rekany-light/10 p-4">
                   <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-6 w-6 flex-shrink-0 text-green-600" />
-                    <p className="font-medium text-green-800">
+                    <CheckCircle className="h-6 w-6 flex-shrink-0 text-rekany-light" />
+                    <p className="font-medium text-rekany-dark">
                       Votre message a bien été envoyé ! Nous vous répondrons très bientôt.
                     </p>
                   </div>
@@ -323,8 +317,9 @@ export default function ContactPage() {
               )}
             </div>
 
+            {/* Map */}
             <div className="flex flex-col">
-              <div className="glass-card min-h-[400px] flex-1 rounded-3xl border border-white/60 p-2 shadow-lg">
+              <div className="bg-rekany-white rounded-3xl border border-rekany-cream shadow-sm p-2 flex-1">
                 <div className="relative h-full min-h-[400px] overflow-hidden rounded-2xl">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d242859.2547627579!2d47.40107905!3d-18.88792905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x21f07de34f1f4eb3%3A0xdf10b5c0d41466c0!2sAntananarivo%2C%20Madagascar!5e0!3m2!1sfr!2s!4v1700000000000!5m2!1sfr!2s"
@@ -337,17 +332,17 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                <div className="glass-card rounded-xl p-4 text-center">
+              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                <div className="bg-rekany-white rounded-xl p-4 text-center border border-rekany-cream">
                   <Clock className="mx-auto mb-2 h-5 w-5 text-rekany-light" />
-                  <p className="text-xs font-semibold uppercase tracking-wider text-rekany-gray/60">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-rekany-gray/50">
                     Horaires
                   </p>
                   <p className="text-sm font-medium text-rekany-dark">Lun - Sam : 8h - 17h</p>
                 </div>
-                <div className="glass-card rounded-xl p-4 text-center">
+                <div className="bg-rekany-white rounded-xl p-4 text-center border border-rekany-cream">
                   <Globe className="mx-auto mb-2 h-5 w-5 text-rekany-light" />
-                  <p className="text-xs font-semibold uppercase tracking-wider text-rekany-gray/60">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-rekany-gray/50">
                     Livraison
                   </p>
                   <p className="text-sm font-medium text-rekany-dark">National & Export</p>
@@ -358,6 +353,7 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* CTA Section */}
       <section className="pb-20 lg:pb-28">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-3xl">
@@ -368,6 +364,7 @@ export default function ContactPage() {
             </div>
 
             <div className="relative px-8 py-16 text-center md:px-16 md:py-20">
+              <Leaf className="h-12 w-12 text-white/40 mx-auto mb-4" />
               <h2 className="mb-4 font-poppins text-3xl font-bold text-white md:text-4xl">
                 Prêt à goûter l’excellence bio ?
               </h2>
@@ -376,11 +373,10 @@ export default function ContactPage() {
                 nos produits traçables et certifiés bio sont faits pour vous.
               </p>
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <button className="flex items-center space-x-2 rounded-full bg-white px-8 py-3.5 font-semibold text-rekany-dark transition-colors hover:bg-rekany-beige">
-                  <ShoppingBag className="h-5 w-5" />
-                  <span>Voir le catalogue</span>
-                </button>
-                <button className="flex items-center space-x-2 rounded-full border-2 border-white/30 px-8 py-3.5 font-semibold text-white transition-colors hover:bg-white/10">
+                <Button variant="primary" icon>
+                  Voir le catalogue
+                </Button>
+                <button className="flex items-center gap-2 rounded-full border-2 border-white/30 px-8 py-3 font-semibold text-white transition-all hover:bg-white/10">
                   <Download className="h-5 w-5" />
                   <span>Notre plaquette</span>
                 </button>
@@ -390,6 +386,7 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* WhatsApp Float */}
       <a
         href="https://wa.me/261320740006"
         target="_blank"
@@ -398,7 +395,7 @@ export default function ContactPage() {
         aria-label="Contact WhatsApp"
       >
         <MessageCircle className="h-7 w-7 text-white" />
-        <span className="absolute right-16 whitespace-nowrap rounded-lg bg-gray-900 px-3 py-1.5 text-xs text-white opacity-0 shadow-md transition-opacity group-hover:opacity-100">
+        <span className="absolute right-16 whitespace-nowrap rounded-lg bg-rekany-dark px-3 py-1.5 text-xs text-white opacity-0 shadow-md transition-opacity group-hover:opacity-100">
           Discuter sur WhatsApp
         </span>
       </a>

@@ -7,26 +7,35 @@ interface ButtonProps {
     children: ReactNode;
     variant?: ButtonVariant;
     icon?: boolean;
+    type?: "button" | "submit" | "reset";
     onClick?: () => void;
+    disabled?: boolean;
 }
 
 export default function Button({
     children,
     variant = "primary",
     icon = false,
+    type = "button",
+    disabled = false,
     ...props
 }: ButtonProps) {
     const base =
-        "inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300";
+        "inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed";
 
     const styles: Record<ButtonVariant, string> = {
         primary: "bg-rekany-orange text-white hover:bg-rekany-dark",
         secondary:
-            "bg-transparent text-white border-2 border-white/30 hover:border-rekany-ldark hover:text-rekany-dark",
+            "bg-transparent text-white border-2 border-white/30 hover:border-rekany-light hover:text-rekany-light",
     };
 
     return (
-        <button className={`${base} ${styles[variant]}`} {...props}>
+        <button
+            type={type}
+            disabled={disabled}
+            className={`${base} ${styles[variant]}`}
+            {...props}
+        >
             {children}
             {icon && <ArrowRight className="h-4 w-4" />}
         </button>

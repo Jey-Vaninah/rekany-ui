@@ -9,33 +9,10 @@
   --rekany-terra: #8D6E63;
   --rekany-white: #FFFFFF;
   --rekany-gray: #37474F;
-<<<<<<< HEAD
-  --rekany-cream: #F0EBD8;
-
-  --radius: 1rem;
-  --primary: #1B5E20;
-  --primary-foreground: #FFFFFF;
-  --leaf: #4CAF50;
-  --leaf-foreground: #FFFFFF;
-  --mint: #EDF7ED;
-  --cream: #FAF9F5;
-  --card: #FFFFFF;
-  --background: #F8F5E9;
-  --foreground: #37474F;
-  --muted-foreground: #6B7280;
-  --border: #E5E7EB;
-  --input: #E5E7EB;
-  --ring: #4CAF50;
-
-  --shadow-soft: 0 18px 40px -24px rgba(27, 94, 32, 0.35);
-  --shadow-lift: 0 30px 60px -28px rgba(27, 94, 32, 0.45);
-  --gradient-leaf: linear-gradient(135deg, var(--primary), var(--leaf));
-=======
   --rekany-fair: #D4A017;
   --rekany-marang: #EA580C;
   --rekany-orange: #F97316;
   /* Ajout de l'orange */
->>>>>>> feat/about
 }
 
 @theme {
