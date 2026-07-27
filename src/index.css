@@ -11,6 +11,25 @@
   --rekany-white: #FFFFFF;
   --rekany-gray: #37474F;
   --rekany-cream: #F0EBD8;
+
+  --radius: 1rem;
+  --primary: #1B5E20;
+  --primary-foreground: #FFFFFF;
+  --leaf: #4CAF50;
+  --leaf-foreground: #FFFFFF;
+  --mint: #EDF7ED;
+  --cream: #FAF9F5;
+  --card: #FFFFFF;
+  --background: #F8F5E9;
+  --foreground: #37474F;
+  --muted-foreground: #6B7280;
+  --border: #E5E7EB;
+  --input: #E5E7EB;
+  --ring: #4CAF50;
+
+  --shadow-soft: 0 18px 40px -24px rgba(27, 94, 32, 0.35);
+  --shadow-lift: 0 30px 60px -28px rgba(27, 94, 32, 0.45);
+  --gradient-leaf: linear-gradient(135deg, var(--primary), var(--leaf));
 }
 
 @theme {
@@ -28,6 +47,28 @@
 
   --font-poppins: "Poppins", sans-serif;
   --font-inter: "Inter", sans-serif;
+  --font-script: "Dancing Script", sans-serif;
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-leaf: var(--leaf);
+  --color-leaf-foreground: var(--leaf-foreground);
+  --color-mint: var(--mint);
+  --color-cream: var(--cream);
+  --color-card: var(--card);
+  --color-background: var(--background);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
 }
 
 body {
@@ -100,4 +141,26 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-link:hover::after {
   width: 100%;
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@utility shadow-lift {
+  box-shadow: var(--shadow-lift);
+}
+
+@utility bg-gradient-leaf {
+  background-image: var(--gradient-leaf);
+}
+
+@utility glass-panel {
+  background-color: color-mix(in oklab, var(--card) 65%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+}
+
+@utility font-script {
+  font-family: var(--font-script);
 }

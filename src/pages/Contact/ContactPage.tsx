@@ -13,6 +13,38 @@ import {
   ShoppingBag,
   Download,
 } from "lucide-react";
+import rizierImage from "../../assets/images/rizier.jpg";
+
+const contactMethods = [
+  {
+    icon: Phone,
+    title: "Téléphone",
+    value: "+261 32 07 400 06",
+    hint: "Lundi – Samedi · 8h – 17h",
+    href: "tel:+261320740006",
+  },
+  {
+    icon: Mail,
+    title: "Email",
+    value: "rekany@gmail.com",
+    hint: "Réponse sous 24 h",
+    href: "mailto:rekany@gmail.com",
+  },
+  {
+    icon: MapPin,
+    title: "Siège social",
+    value: "Lot IIK 60 B Mahatony",
+    hint: "Antananarivo, Madagascar",
+    href: "https://maps.google.com/?q=Antananarivo+Madagascar",
+  },
+  {
+    icon: MessageCircle,
+    title: "WhatsApp",
+    value: "+261 32 07 400 06",
+    hint: "Réponse rapide 7j/7",
+    href: "https://wa.me/261320740006",
+  },
+];
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -67,156 +99,81 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen pt-24 pb-12">
-      {/* Hero Section */}
-      <section className="relative pt-12 pb-16 lg:pt-16 lg:pb-24 overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-rekany-light/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-rekany-dark/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+      <section
+        className="relative overflow-hidden bg-cover bg-center bg-no-repeat pt-12 pb-16 lg:pt-16 lg:pb-24"
+        style={{ backgroundImage: `url(${rizierImage})` }}
+      >
+        <div className="absolute inset-0 bg-white/70 backdrop-blur-[2px]" />
+        <div className="absolute top-0 right-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-rekany-light/20 blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-72 w-72 translate-y-1/2 -translate-x-1/2 rounded-full bg-rekany-dark/20 blur-3xl" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center space-x-2 bg-rekany-light/10 text-rekany-dark px-4 py-2 rounded-full text-sm font-medium mb-6 backdrop-blur-sm border border-rekany-light/20">
-              <MessageCircle className="w-4 h-4 text-rekany-light" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="mb-6 inline-flex items-center space-x-2 rounded-full border border-rekany-light/20 bg-rekany-light/10 px-4 py-2 text-sm font-medium text-rekany-dark backdrop-blur-sm">
+              <MessageCircle className="h-4 w-4 text-rekany-light" />
               <span>Restons en contact</span>
             </div>
 
-            <h1 className="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl text-rekany-dark leading-tight mb-6">
+            <h1 className="mb-6 font-poppins text-4xl font-bold leading-tight text-rekany-dark md:text-5xl lg:text-6xl">
               Contactez{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rekany-dark to-rekany-light">
+              <span className="bg-gradient-to-r from-rekany-dark to-rekany-light bg-clip-text text-transparent">
                 REKANY AGRI
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-rekany-gray/80 leading-relaxed font-light">
-              Une question sur nos produits bio ? Un projet d'export ? Ou
-              simplement envie de connaître nos paysans partenaires ? Notre
-              équipe vous répond avec la même passion que celle mise dans nos
-              terres.
+            <p className="text-lg font-light leading-relaxed text-rekany-gray/80 md:text-xl">
+              Une question sur nos produits bio, un projet d’export ou un partenariat ?
+              Notre équipe vous répond avec la même passion que celle mêlée à nos terres.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Contact Info Cards */}
       <section className="pb-20 lg:pb-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {/* Address Card */}
-            <div className="glass-card rounded-2xl p-8 hover-lift group cursor-pointer">
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-rekany-dark to-rekany-light flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <MapPin className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="font-poppins font-semibold text-xl text-rekany-dark mb-3">
-                Notre Adresse
-              </h3>
-              <p className="text-rekany-gray/80 leading-relaxed mb-4">
-                <strong className="text-rekany-dark">Siège Social :</strong>
-                <br />
-                Lot IIK 60 B Mahatony
-                <br />
-                Antananarivo, Madagascar
-              </p>
-              <div className="pt-4 border-t border-rekany-dark/10">
-                <p className="text-sm text-rekany-gray/60 mb-1 flex items-center">
-                  <span className="inline-block w-2 h-2 rounded-full bg-rekany-light mr-2"></span>
-                  Antenne Antsirabe
-                </p>
-                <p className="text-sm text-rekany-gray/60 flex items-center">
-                  <span className="inline-block w-2 h-2 rounded-full bg-rekany-light mr-2"></span>
-                  Antenne Anjororobe
-                </p>
-              </div>
-            </div>
-
-            {/* Phone Card */}
-            <div className="glass-card rounded-2xl p-8 hover-lift group cursor-pointer">
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-rekany-dark to-rekany-light flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Phone className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="font-poppins font-semibold text-xl text-rekany-dark mb-3">
-                Téléphone
-              </h3>
-              <p className="text-rekany-gray/80 leading-relaxed mb-4">
-                Disponible du lundi au samedi
-                <br />
-                de 8h00 à 17h00 (EAT)
-              </p>
-              <a
-                href="tel:+261320740006"
-                className="inline-flex items-center text-rekany-dark font-semibold text-lg hover:text-rekany-light transition-colors group/link"
-              >
-                <span>+261 32 07 400 06</span>
-                <ArrowUpRight className="w-5 h-5 ml-1 opacity-0 group-hover/link:opacity-100 transition-opacity" />
-              </a>
-              <div className="mt-4 flex items-center space-x-3">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-6 lg:grid-cols-4">
+            {contactMethods.map((item) => {
+              const Icon = item.icon;
+              return (
                 <a
-                  href="https://wa.me/261320740006"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 bg-green-500/10 text-green-700 px-3 py-1.5 rounded-full text-sm font-medium hover:bg-green-500/20 transition-colors"
+                  key={item.title}
+                  href={item.href}
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="group glass-card rounded-2xl p-8 hover-lift"
                 >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>WhatsApp</span>
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-rekany-dark to-rekany-light transition-transform duration-300 group-hover:scale-110">
+                    <Icon className="h-7 w-7 text-white" />
+                  </div>
+                  <h3 className="mb-3 font-poppins text-xl font-semibold text-rekany-dark">
+                    {item.title}
+                  </h3>
+                  <p className="mb-2 font-semibold text-rekany-dark">{item.value}</p>
+                  <p className="text-sm leading-relaxed text-rekany-gray/70">{item.hint}</p>
                 </a>
-              </div>
-            </div>
-
-            {/* Email Card */}
-            <div className="glass-card rounded-2xl p-8 hover-lift group cursor-pointer">
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-rekany-dark to-rekany-light flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Mail className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="font-poppins font-semibold text-xl text-rekany-dark mb-3">
-                Email & Web
-              </h3>
-              <p className="text-rekany-gray/80 leading-relaxed mb-4">
-                Pour toute demande commerciale,
-                <br />
-                partenariat ou information.
-              </p>
-              <a
-                href="mailto:rekany@gmail.com"
-                className="block text-rekany-dark font-semibold hover:text-rekany-light transition-colors mb-2"
-              >
-                rekany@gmail.com
-              </a>
-              <a
-                href="https://www.rekany.mg"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center text-rekany-light font-medium hover:text-rekany-dark transition-colors"
-              >
-                <span>www.rekany.mg</span>
-                <ExternalLink className="w-4 h-4 ml-1" />
-              </a>
-            </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Contact Form & Map Section */}
       <section className="pb-20 lg:pb-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
-            {/* Contact Form */}
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-stretch gap-8 lg:grid-cols-2">
             <div className="glass-card rounded-3xl p-8 md:p-10">
               <div className="mb-8">
-                <h2 className="font-poppins font-bold text-2xl md:text-3xl text-rekany-dark mb-3">
+                <h2 className="mb-3 font-poppins text-2xl font-bold text-rekany-dark md:text-3xl">
                   Envoyez-nous un message
                 </h2>
                 <p className="text-rekany-gray/70">
-                  Remplissez le formulaire ci-dessous et nous vous répondrons
-                  dans les 24 heures ouvrées.
+                  Remplissez ce formulaire et notre équipe vous répondra rapidement.
                 </p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid gap-6 md:grid-cols-2">
                   <div>
-                    <label
-                      htmlFor="prenom"
-                      className="block text-sm font-semibold text-rekany-dark mb-2"
-                    >
+                    <label htmlFor="prenom" className="mb-2 block text-sm font-semibold text-rekany-dark">
                       Prénom
                     </label>
                     <input
@@ -226,15 +183,12 @@ export default function ContactPage() {
                       value={formData.prenom}
                       onChange={handleChange}
                       required
-                      className="form-input w-full px-4 py-3.5 rounded-xl bg-white/80 text-rekany-gray placeholder-rekany-gray/40"
+                      className="form-input w-full rounded-xl bg-white/80 px-4 py-3.5 text-rekany-gray placeholder-rekany-gray/40"
                       placeholder="Votre prénom"
                     />
                   </div>
                   <div>
-                    <label
-                      htmlFor="nom"
-                      className="block text-sm font-semibold text-rekany-dark mb-2"
-                    >
+                    <label htmlFor="nom" className="mb-2 block text-sm font-semibold text-rekany-dark">
                       Nom
                     </label>
                     <input
@@ -244,17 +198,14 @@ export default function ContactPage() {
                       value={formData.nom}
                       onChange={handleChange}
                       required
-                      className="form-input w-full px-4 py-3.5 rounded-xl bg-white/80 text-rekany-gray placeholder-rekany-gray/40"
+                      className="form-input w-full rounded-xl bg-white/80 px-4 py-3.5 text-rekany-gray placeholder-rekany-gray/40"
                       placeholder="Votre nom"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-semibold text-rekany-dark mb-2"
-                  >
+                  <label htmlFor="email" className="mb-2 block text-sm font-semibold text-rekany-dark">
                     Adresse Email
                   </label>
                   <input
@@ -264,16 +215,13 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="form-input w-full px-4 py-3.5 rounded-xl bg-white/80 text-rekany-gray placeholder-rekany-gray/40"
+                    className="form-input w-full rounded-xl bg-white/80 px-4 py-3.5 text-rekany-gray placeholder-rekany-gray/40"
                     placeholder="exemple@email.com"
                   />
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="telephone"
-                    className="block text-sm font-semibold text-rekany-dark mb-2"
-                  >
+                  <label htmlFor="telephone" className="mb-2 block text-sm font-semibold text-rekany-dark">
                     Téléphone (optionnel)
                   </label>
                   <input
@@ -282,16 +230,13 @@ export default function ContactPage() {
                     name="telephone"
                     value={formData.telephone}
                     onChange={handleChange}
-                    className="form-input w-full px-4 py-3.5 rounded-xl bg-white/80 text-rekany-gray placeholder-rekany-gray/40"
+                    className="form-input w-full rounded-xl bg-white/80 px-4 py-3.5 text-rekany-gray placeholder-rekany-gray/40"
                     placeholder="+261 XX XX XXX XX"
                   />
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="sujet"
-                    className="block text-sm font-semibold text-rekany-dark mb-2"
-                  >
+                  <label htmlFor="sujet" className="mb-2 block text-sm font-semibold text-rekany-dark">
                     Sujet
                   </label>
                   <select
@@ -300,30 +245,23 @@ export default function ContactPage() {
                     value={formData.sujet}
                     onChange={handleChange}
                     required
-                    className="form-input w-full px-4 py-3.5 rounded-xl bg-white/80 text-rekany-gray cursor-pointer"
+                    className="form-input w-full cursor-pointer rounded-xl bg-white/80 px-4 py-3.5 text-rekany-gray"
                   >
                     <option value="" disabled>
                       Choisissez un sujet
                     </option>
                     <option value="particulier">Commande particulier</option>
-                    <option value="grande-surface">
-                      Partenariat Grande Surface
-                    </option>
+                    <option value="grande-surface">Partenariat Grande Surface</option>
                     <option value="export">Export International</option>
                     <option value="restaurant">Restaurant / Hôtel</option>
-                    <option value="agriculteur">
-                      Devenir agriculteur partenaire
-                    </option>
+                    <option value="agriculteur">Devenir agriculteur partenaire</option>
                     <option value="presse">Presse & Médias</option>
                     <option value="autre">Autre demande</option>
                   </select>
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-semibold text-rekany-dark mb-2"
-                  >
+                  <label htmlFor="message" className="mb-2 block text-sm font-semibold text-rekany-dark">
                     Votre Message
                   </label>
                   <textarea
@@ -333,9 +271,9 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="form-input w-full px-4 py-3.5 rounded-xl bg-white/80 text-rekany-gray placeholder-rekany-gray/40 resize-none"
+                    className="form-input w-full resize-none rounded-xl bg-white/80 px-4 py-3.5 text-rekany-gray placeholder-rekany-gray/40"
                     placeholder="Décrivez votre demande en détail..."
-                  ></textarea>
+                  />
                 </div>
 
                 <div className="flex items-start space-x-3">
@@ -346,18 +284,11 @@ export default function ContactPage() {
                     checked={formData.consent}
                     onChange={handleChange}
                     required
-                    className="mt-1 w-5 h-5 rounded border-rekany-gray/30 text-rekany-dark focus:ring-rekany-light cursor-pointer"
+                    className="mt-1 h-5 w-5 cursor-pointer rounded border-rekany-gray/30 text-rekany-dark focus:ring-rekany-light"
                   />
-                  <label
-                    htmlFor="consent"
-                    className="text-sm text-rekany-gray/70 leading-relaxed"
-                  >
-                    J'accepte que mes données soient traitées par REKANY AGRI
-                    dans le cadre de ma demande.{" "}
-                    <a
-                      href="#"
-                      className="text-rekany-dark underline hover:text-rekany-light"
-                    >
+                  <label htmlFor="consent" className="text-sm leading-relaxed text-rekany-gray/70">
+                    J’accepte que mes données soient traitées par REKANY AGRI dans le cadre de ma demande. {" "}
+                    <a href="#" className="text-rekany-dark underline hover:text-rekany-light">
                       Politique de confidentialité
                     </a>
                     .
@@ -367,67 +298,59 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-primary w-full text-white font-semibold py-4 rounded-xl text-base flex items-center justify-center space-x-2 group cursor-pointer disabled:opacity-75"
+                  className="btn-primary flex w-full items-center justify-center space-x-2 rounded-xl py-4 text-base font-semibold text-white disabled:opacity-75"
                 >
                   {isSubmitting ? (
                     <span className="animate-pulse">Envoi en cours...</span>
                   ) : (
                     <>
                       <span>Envoyer le message</span>
-                      <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      <Send className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </>
                   )}
                 </button>
               </form>
 
-              {/* Success Message Banner */}
               {isSubmitted && (
-                <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-xl animate-fadeIn">
+                <div className="mt-6 rounded-xl border border-green-200 bg-green-50 p-4">
                   <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
-                    <p className="text-green-800 font-medium">
-                      Votre message a bien été envoyé ! Nous vous répondrons
-                      très bientôt.
+                    <CheckCircle className="h-6 w-6 flex-shrink-0 text-green-600" />
+                    <p className="font-medium text-green-800">
+                      Votre message a bien été envoyé ! Nous vous répondrons très bientôt.
                     </p>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Map */}
             <div className="flex flex-col">
-              <div className="glass-card rounded-3xl p-2 flex-1 border border-white/60 shadow-lg min-h-[400px]">
-                <div className="relative overflow-hidden rounded-2xl h-full min-h-[400px]">
+              <div className="glass-card min-h-[400px] flex-1 rounded-3xl border border-white/60 p-2 shadow-lg">
+                <div className="relative h-full min-h-[400px] overflow-hidden rounded-2xl">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d242859.2547627579!2d47.40107905!3d-18.88792905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x21f07de34f1f4eb3%3A0xdf10b5c0d41466c0!2sAntananarivo%2C%20Madagascar!5e0!3m2!1sfr!2s!4v1700000000000!5m2!1sfr!2s"
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    className="w-full h-full border-0 min-h-[400px] rounded-2xl"
+                    className="h-full min-h-[400px] w-full rounded-2xl border-0"
                     title="Localisation REKANY AGRI - Antananarivo, Madagascar"
-                  ></iframe>
+                  />
                 </div>
               </div>
 
-              {/* Quick Info Below Map */}
-              <div className="mt-6 grid grid-cols-2 gap-4">
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 <div className="glass-card rounded-xl p-4 text-center">
-                  <Clock className="w-5 h-5 text-rekany-light mx-auto mb-2" />
-                  <p className="text-xs text-rekany-gray/60 uppercase tracking-wider font-semibold">
+                  <Clock className="mx-auto mb-2 h-5 w-5 text-rekany-light" />
+                  <p className="text-xs font-semibold uppercase tracking-wider text-rekany-gray/60">
                     Horaires
                   </p>
-                  <p className="text-sm text-rekany-dark font-medium">
-                    Lun - Sam : 8h - 17h
-                  </p>
+                  <p className="text-sm font-medium text-rekany-dark">Lun - Sam : 8h - 17h</p>
                 </div>
                 <div className="glass-card rounded-xl p-4 text-center">
-                  <Globe className="w-5 h-5 text-rekany-light mx-auto mb-2" />
-                  <p className="text-xs text-rekany-gray/60 uppercase tracking-wider font-semibold">
+                  <Globe className="mx-auto mb-2 h-5 w-5 text-rekany-light" />
+                  <p className="text-xs font-semibold uppercase tracking-wider text-rekany-gray/60">
                     Livraison
                   </p>
-                  <p className="text-sm text-rekany-dark font-medium">
-                    National & Export
-                  </p>
+                  <p className="text-sm font-medium text-rekany-dark">National & Export</p>
                 </div>
               </div>
             </div>
@@ -435,33 +358,30 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="pb-20 lg:pb-28">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-3xl overflow-hidden">
-            {/* Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-rekany-dark via-rekany-dark to-rekany-light"></div>
-            <div className="absolute inset-0 opacity-10 pointer-events-none">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl">
+            <div className="absolute inset-0 bg-gradient-to-br from-rekany-dark via-rekany-dark to-rekany-light" />
+            <div className="pointer-events-none absolute inset-0 opacity-10">
+              <div className="absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-white blur-3xl" />
+              <div className="absolute bottom-0 left-0 h-48 w-48 translate-y-1/2 -translate-x-1/2 rounded-full bg-white blur-3xl" />
             </div>
 
-            <div className="relative px-8 py-16 md:px-16 md:py-20 text-center">
-              <h2 className="font-poppins font-bold text-3xl md:text-4xl text-white mb-4">
-                Prêt à goûter l'excellence bio ?
+            <div className="relative px-8 py-16 text-center md:px-16 md:py-20">
+              <h2 className="mb-4 font-poppins text-3xl font-bold text-white md:text-4xl">
+                Prêt à goûter l’excellence bio ?
               </h2>
-              <p className="text-white/80 text-lg max-w-2xl mx-auto mb-8">
-                Que vous soyez un particulier, une grande surface ou un client à
-                l'international, nos produits traçables et certifiés bio sont
-                faits pour vous.
+              <p className="mx-auto mb-8 max-w-2xl text-lg text-white/80">
+                Que vous soyez un particulier, une grande surface ou un client à l’international,
+                nos produits traçables et certifiés bio sont faits pour vous.
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <button className="bg-white text-rekany-dark font-semibold px-8 py-3.5 rounded-full hover:bg-rekany-beige transition-colors flex items-center space-x-2 cursor-pointer">
-                  <ShoppingBag className="w-5 h-5" />
+              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <button className="flex items-center space-x-2 rounded-full bg-white px-8 py-3.5 font-semibold text-rekany-dark transition-colors hover:bg-rekany-beige">
+                  <ShoppingBag className="h-5 w-5" />
                   <span>Voir le catalogue</span>
                 </button>
-                <button className="border-2 border-white/30 text-white font-semibold px-8 py-3.5 rounded-full hover:bg-white/10 transition-colors flex items-center space-x-2 cursor-pointer">
-                  <Download className="w-5 h-5" />
+                <button className="flex items-center space-x-2 rounded-full border-2 border-white/30 px-8 py-3.5 font-semibold text-white transition-colors hover:bg-white/10">
+                  <Download className="h-5 w-5" />
                   <span>Notre plaquette</span>
                 </button>
               </div>
@@ -470,16 +390,15 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* WhatsApp Floating Button */}
       <a
         href="https://wa.me/261320740006"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-40 group"
+        className="group fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 shadow-lg transition-transform hover:scale-110"
         aria-label="Contact WhatsApp"
       >
-        <MessageCircle className="w-7 h-7 text-white" />
-        <span className="absolute right-16 bg-gray-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md">
+        <MessageCircle className="h-7 w-7 text-white" />
+        <span className="absolute right-16 whitespace-nowrap rounded-lg bg-gray-900 px-3 py-1.5 text-xs text-white opacity-0 shadow-md transition-opacity group-hover:opacity-100">
           Discuter sur WhatsApp
         </span>
       </a>

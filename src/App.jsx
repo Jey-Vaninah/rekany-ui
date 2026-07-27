@@ -3,6 +3,7 @@ import Layout from "./components/Layout";
 import NotFound404 from "./components/NotFound404";
 import HomePage from "./pages/Home/Home";
 import ContactPage from "./pages/Contact/ContactPage";
+import ProductsPage from "./pages/Products/Products";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/produits" element={<ProductsPage />} />
       </Route>
 
       <Route path="*" element={<NotFound404 />} />
