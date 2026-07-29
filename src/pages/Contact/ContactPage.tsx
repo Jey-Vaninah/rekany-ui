@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   Mail,
-  Phone,        // ← Gardez (votre version)
-  MapPin,       // ← Gardez (votre version)
+  Phone,
+  MapPin,
   Clock,
   Leaf,
   Send,
@@ -13,11 +13,12 @@ import {
   CheckCircle2,
   Sparkles,
   Globe,
-  CheckCircle,  // ← Ajoutez (version distante)
-  Download,     // ← Ajoutez (version distante)
+  AlertCircle,
 } from "lucide-react";
 import { FiFacebook, FiInstagram, FiLinkedin } from "react-icons/fi";
 import rizierImage from "../../assets/images/rizier.jpg";
+import { contactService } from "@/services/contactService";
+import { isAxiosError } from "axios";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -72,6 +73,7 @@ export default function ContactPage() {
   const reduce = useReducedMotion();
   const [sent, setSent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [selectedSubject, setSelectedSubject] = useState<string>("particulier");
 
   const [formData, setFormData] = useState({
@@ -89,12 +91,21 @@ export default function ContactPage() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      await contactService.create({
+        nom: formData.name,
+        email: formData.email,
+        telephone: formData.phone,
+        entreprise: formData.company || "Particulier",
+        sujet: subjects.find((s) => s.id === selectedSubject)?.label ?? selectedSubject,
+        message: formData.message,
+      });
+
       setSent(true);
       setFormData({
         name: "",
@@ -107,7 +118,12 @@ export default function ContactPage() {
       setTimeout(() => {
         setSent(false);
       }, 5000);
-    }, 1000);
+    } catch (err) {
+      const apiMessage = isAxiosError(err) ? err.response?.data?.message : undefined;
+      setError(apiMessage ?? "Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -369,6 +385,13 @@ export default function ContactPage() {
                       className="w-full resize-none rounded-xl border border-rekany-cream bg-rekany-beige/20 px-4 py-3 text-sm text-rekany-gray shadow-sm outline-none transition-all placeholder:text-rekany-gray/40 focus:border-rekany-dark focus:ring-2 focus:ring-rekany-dark/15"
                     />
                   </div>
+
+                  {error ? (
+                    <div className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                      <AlertCircle className="h-4 w-4 shrink-0" />
+                      {error}
+                    </div>
+                  ) : null}
 
                   <div className="flex flex-col-reverse items-center gap-4 pt-2 sm:flex-row sm:justify-between">
                     <p className="text-xs text-rekany-gray/60">

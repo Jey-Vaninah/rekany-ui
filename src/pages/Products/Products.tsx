@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useState } from "react";
 import {
+  AlertCircle,
   ArrowRight,
   BadgeCheck,
   Leaf,
+  Loader2,
   MapPin,
   Plus,
   Search,
@@ -12,11 +14,26 @@ import {
   Truck,
 } from "lucide-react";
 
-import { CATEGORIES, formatPrice, products, type Product } from "@/data/products";
+import { formatPrice, type Product } from "@/data/products";
+import { useProduits } from "@/hooks/useProduits";
+import type { Produit } from "@/types/api";
 import salade2 from "@/assets/images/salade2.jpg";
+import fallbackImage from "@/assets/images/produit.jpg";
 
-const origins = Array.from(new Set<string>(products.map((p: Product) => p.origin))).sort();
-const certifications = Array.from(new Set<string>(products.map((p: Product) => p.certification))).sort();
+function mapProduitToProduct(p: Produit): Product {
+  return {
+    id: String(p.id),
+    name: p.nom,
+    category: p.categorie,
+    price: p.prix,
+    unit: p.unite,
+    certification: p.certification,
+    origin: p.origine,
+    available: p.disponible,
+    image: p.image_url || fallbackImage,
+    description: p.description,
+  };
+}
 
 const highlights = [
   { icon: Leaf, title: "100% Biologique", text: "Cultures sans intrant chimique" },
@@ -80,6 +97,19 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 }
 
 export default function ProductsPage() {
+  const { data: produits, isLoading, isError, refetch } = useProduits();
+
+  const products = useMemo<Product[]>(() => (produits ?? []).map(mapProduitToProduct), [produits]);
+  const categories = useMemo(
+    () => Array.from(new Set(products.map((p) => p.category))).sort(),
+    [products],
+  );
+  const origins = useMemo(() => Array.from(new Set(products.map((p) => p.origin))).sort(), [products]);
+  const certifications = useMemo(
+    () => Array.from(new Set(products.map((p) => p.certification))).sort(),
+    [products],
+  );
+
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("Toutes");
   const [origin, setOrigin] = useState("Toutes");
@@ -98,7 +128,7 @@ export default function ProductsPage() {
           (!onlyAvailable || p.available) &&
           (p.name + p.description + p.origin).toLowerCase().includes(query.toLowerCase()),
       ),
-    [query, category, origin, certification, maxPrice, onlyAvailable],
+    [products, query, category, origin, certification, maxPrice, onlyAvailable],
   );
 
   return (
@@ -202,7 +232,7 @@ export default function ProductsPage() {
 
           {/* Category pills */}
           <div className="mt-8 flex flex-wrap gap-2">
-            {["Toutes", ...CATEGORIES].map((c) => (
+            {["Toutes", ...categories].map((c) => (
               <button
                 key={c}
                 type="button"
@@ -286,19 +316,40 @@ export default function ProductsPage() {
             </div>
           </div>
 
-          <motion.div layout className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <AnimatePresence mode="popLayout">
-              {filtered.map((p: Product, i: number) => (
-                <ProductCard key={p.id} product={p} index={i} />
-              ))}
-            </AnimatePresence>
-          </motion.div>
-
-          {filtered.length === 0 ? (
-            <div className="mt-12 rounded-2xl border border-dashed border-rekany-cream p-12 text-center text-sm text-rekany-gray/70">
-              Aucun produit ne correspond à vos filtres.
+          {isLoading ? (
+            <div className="mt-12 flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-rekany-cream p-16 text-sm text-rekany-gray/70">
+              <Loader2 className="h-6 w-6 animate-spin text-rekany-dark" aria-hidden />
+              Chargement des produits...
             </div>
-          ) : null}
+          ) : isError ? (
+            <div className="mt-12 flex flex-col items-center gap-3 rounded-2xl border border-dashed border-red-200 bg-red-50 p-16 text-center text-sm text-red-700">
+              <AlertCircle className="h-6 w-6" aria-hidden />
+              Impossible de charger les produits pour le moment.
+              <button
+                type="button"
+                onClick={() => refetch()}
+                className="mt-1 rounded-lg border border-red-300 px-4 py-1.5 text-xs font-semibold text-red-700 transition-colors hover:bg-red-100"
+              >
+                Réessayer
+              </button>
+            </div>
+          ) : (
+            <>
+              <motion.div layout className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <AnimatePresence mode="popLayout">
+                  {filtered.map((p: Product, i: number) => (
+                    <ProductCard key={p.id} product={p} index={i} />
+                  ))}
+                </AnimatePresence>
+              </motion.div>
+
+              {filtered.length === 0 ? (
+                <div className="mt-12 rounded-2xl border border-dashed border-rekany-cream p-12 text-center text-sm text-rekany-gray/70">
+                  Aucun produit ne correspond à vos filtres.
+                </div>
+              ) : null}
+            </>
+          )}
         </section>
 
         {/* CTA band */}
